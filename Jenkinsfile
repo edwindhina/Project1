@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("sukumar555/jenkinspipeline")
+        app = docker.build("edwindhina/jenkinspipeline:${env.BUILD_NUMBER}")
     }
 
     stage('Test image') {
@@ -32,5 +32,14 @@ node {
             app.push("1.0.0.${env.BUILD_NUMBER}")
             app.push("latest")
         }
+    }
+
+    stage ('Run image') {
+    /* Finally run the image built */
+    
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+         app.run()
+    }
+
     }
 }
