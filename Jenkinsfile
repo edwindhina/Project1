@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("edwindhina/jenkinspipeline:${env.BUILD_NUMBER}")
+        app = docker.build("edwindhina/jenkinspipeline")
     }
 
     stage('Test image') {
