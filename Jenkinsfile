@@ -33,4 +33,14 @@ node {
             app.push("latest")
         }
     }
+
+   stage ('Run image') {
+
+    /* Finally run the image built */
+
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+
+         app.run()
+
+    }
 }
